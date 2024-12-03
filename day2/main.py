@@ -36,9 +36,6 @@ def check_is_report_ok_part_2(report: list[int]) -> bool:
         i += 1
     return True
 
-
-# assert check_is_report_ok_part_2([1, 3, 2, 4, 5]) == True, "Not good"
-# assert check_is_report_ok_part_2([8, 6, 4, 4, 1]) == True, "Not good"
 with open("day2/input.txt", "r") as f:
     data = f.read().splitlines()
 
