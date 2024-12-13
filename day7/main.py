@@ -13,7 +13,7 @@ for row in data:
 
 
 
-def find_equation(equation: tuple[int, list[int]]) -> bool:
+def find_equation_part_1(equation: tuple[int, list[int]]) -> bool:
     outcome, numbers = equation
     combinations = list(product(["+", "*"], repeat=len(numbers)))
     combination_outcome = 0
@@ -28,8 +28,29 @@ def find_equation(equation: tuple[int, list[int]]) -> bool:
         combination_outcome = 0
     return False
 
+
+
+def find_equation_part_2(equation: tuple[int, list[int]]) -> bool:
+    outcome, numbers = equation
+    combinations = list(product(["+", "*", "||"], repeat=len(numbers)))
+    combination_outcome = 0
+    for combination in combinations:
+        for i in range(len(combination)):
+            if combination[i] == "+":
+                combination_outcome += numbers[i]
+            elif combination[i] == "*":
+                combination_outcome *= numbers[i]
+            else:
+                combination_outcome = int(f"{combination_outcome}{numbers[i]}")
+        if combination_outcome == outcome:
+            return True
+        combination_outcome = 0
+    return False
+
+
+
 outcome = 0
-for equation in equations:
-    if find_equation(equation):
+for idx, equation in enumerate(equations):
+    if find_equation_part_2(equation):
         outcome += equation[0]
 print(outcome)
